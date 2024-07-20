@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maintenance Toggle</title>
+    <script>
+        async function toggleMaintenance() {
+            const maintenance = document.getElementById('maintenanceToggle').checked;
+            const response = await fetch('http://localhost:3000/maintenance', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ maintenance })
+            });
+            const data = await response.json();
+            console.log(data);
+        }
+    </script>
+</head>
+<body>
+    <label for="maintenanceToggle">Maintenance Mode</label>
+    <input type="checkbox" id="maintenanceToggle" onclick="toggleMaintenance()">
+</body>
+</html>
